@@ -1,5 +1,9 @@
 package pages;
 
+import dto.Student;
+import enams.Gender;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,13 +26,34 @@ public class PracticeFormPage extends BasePage {
     WebElement inputEmail;
     @FindBy(id = "userNumber")
     WebElement inputMobile;
+    @FindBy(id = "dateOfBirthInput")
+    WebElement dateOfBirthField;
 
-    public void typePracticeForm(){
+
+    public void typePracticeForm(Student student){
        hideBanner();
        hideFooter();
-       inputName.sendKeys("Sveta");
-       inputLastName.sendKeys("Svetlova");
-       inputEmail.sendKeys("qwerty123@gmail.com");
-       inputMobile.sendKeys("0123456789");
+       inputName.sendKeys(student.getName());
+       inputLastName.sendKeys(student.getLastName());
+       inputEmail.sendKeys(student.getEmail());
+       typeGender(student.getGender());
+       inputMobile.sendKeys(student.getMobile());
+       typeDateOfBirth(student.getDateOfBirth());
+    }
+
+    private void typeGender(Gender gender){
+        WebElement btnGender = driver.findElement(By.xpath(gender.getLocator()));
+        btnGender.click();
+    }
+    private void typeDateOfBirth(String dateOfBirth){
+        dateOfBirthField.click();
+        String operationSystem = System.getProperty("os.name");
+        System.out.println(operationSystem);
+        if (operationSystem.startsWith("Win"))
+            dateOfBirthField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        else if (operationSystem.startsWith("Mac"))
+            dateOfBirthField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        dateOfBirthField.sendKeys(dateOfBirth);
+        dateOfBirthField.sendKeys(Keys.ENTER);
     }
 }
