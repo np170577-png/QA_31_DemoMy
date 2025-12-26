@@ -1,4 +1,4 @@
-package enams;
+package enums;
 
 public enum Gender {
 
