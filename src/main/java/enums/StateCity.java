@@ -1,9 +1,9 @@
 package enums;
 
 public enum StateCity {
-    NRC("NCR", new String[]{"Delhi", "Gurgaon", "Noida"}),
+    NCR("NCR", new String[]{"Delhi", "Gurgaon", "Noida"}),
     UTTAR_PRADESH("Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"}),
-    HARYANA("", new String[]{"Karnal", "Panipat"}),
+    HARYANA("Haryana", new String[]{"Karnal", "Panipat"}),
     RAJASTHAN("Rajasthan", new String[]{"Jaipur", "Jaiselmer"});
 
     private String state;

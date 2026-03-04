@@ -30,8 +30,6 @@ public class BasePage {
     }
 
     public boolean validateTextInElement(WebElement element, String text) {
-      return element.getText().contains(text);
-
-
+        return element.getText().contains(text);
     }
 }

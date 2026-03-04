@@ -21,7 +21,8 @@ public class Student {
 
     public Student(String name, String lastName, String email,
                    Gender gender, String mobile, String dateOfBirth,
-                   String subjects, List<Hobbies> hobbies, String picture, String address, String state, String city) {
+                   String subjects, List<Hobbies> hobbies, String picture,
+                   String address, String state, String city) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -108,9 +109,13 @@ public class Student {
         this.picture = picture;
     }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        return address;
+    }
 
-    public void setAddress(String address){this.address = address;}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getState() {
         return state;

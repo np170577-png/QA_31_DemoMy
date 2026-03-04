@@ -31,7 +31,7 @@ public class PracticeFormPage extends BasePage {
     @FindBy(id = "userNumber")
     WebElement inputMobile;
     @FindBy(id = "dateOfBirthInput")
-    WebElement dateOfBirthField;
+    WebElement fieldDateOfBirth;
     @FindBy(id = "subjectsInput")
     WebElement inputSubjects;
     @FindBy(xpath = "//textarea[@placeholder='Current Address']")
@@ -44,7 +44,6 @@ public class PracticeFormPage extends BasePage {
     WebElement btnSubmit;
     @FindBy(id = "example-modal-sizes-title-lg")
     WebElement modalMessage;
-
 
 
     public void typePracticeForm(Student student) {
@@ -60,32 +59,20 @@ public class PracticeFormPage extends BasePage {
         typeHobbies(student.getHobbies());
         inputAddress.sendKeys(student.getAddress());
         typeStateCity(student.getState(), student.getCity());
-        //btnSubmit.click();
+        btnSubmit.click();
+
     }
 
     public boolean validateModalMessage(String text){
-       return validateTextInElement(modalMessage, text);
+        return validateTextInElement(modalMessage, text);
     }
 
-
-
-    private void typeStateCity(String state, String city){
+    private void typeStateCity(String state, String city) {
         inputState.sendKeys(state);
         inputState.sendKeys(Keys.ENTER);
 
-        inputState.sendKeys(city);
-        inputState.sendKeys(Keys.ENTER);
-
-    }
-
-    private void typeSubjects(String subjects) {
-        inputSubjects.click();
-        String[] arr = subjects.split(",");
-        for (String s : arr) {
-            inputSubjects.sendKeys(s);
-            inputSubjects.sendKeys(Keys.ENTER);
-        }
-
+        inputCity.sendKeys(city);
+        inputCity.sendKeys(Keys.ENTER);
     }
 
     private void typeHobbies(List<Hobbies> hobbies) {
@@ -102,7 +89,15 @@ public class PracticeFormPage extends BasePage {
                     break;
             }
         }
+    }
 
+    private void typeSubjects(String subjects) {
+        inputSubjects.click();
+        String[] arr = subjects.split(",");
+        for (String s : arr) {
+            inputSubjects.sendKeys(s);
+            inputSubjects.sendKeys(Keys.ENTER);
+        }
     }
 
     private void typeGender(Gender gender) {
@@ -111,14 +106,14 @@ public class PracticeFormPage extends BasePage {
     }
 
     private void typeDateOfBirth(String dateOfBirth) {
-        dateOfBirthField.click();
+        fieldDateOfBirth.click();
         String operationSystem = System.getProperty("os.name");
         System.out.println(operationSystem);
         if (operationSystem.startsWith("Win"))
-            dateOfBirthField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            fieldDateOfBirth.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         else if (operationSystem.startsWith("Mac"))
-            dateOfBirthField.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        dateOfBirthField.sendKeys(dateOfBirth);
-        dateOfBirthField.sendKeys(Keys.ENTER);
+            fieldDateOfBirth.sendKeys(Keys.chord(Keys.COMMAND, "a"));
+        fieldDateOfBirth.sendKeys(dateOfBirth);
+        fieldDateOfBirth.sendKeys(Keys.ENTER);
     }
 }
