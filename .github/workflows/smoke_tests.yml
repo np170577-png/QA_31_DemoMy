@@ -2,7 +2,7 @@ name: Smoke tests
 
 on:
   push:
-    branches:["master"]
+    branches:["main"]
   #schedule:
 
   jobs:
@@ -11,3 +11,27 @@ on:
       runs-on: windows-latest
       permission:
         contents:read
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v4
+        - name: Set up JDK17
+          uses: actions/setup-java@v4
+          with:
+            java-version: '17'
+            distributor: 'temurin'
+        - name: Install chrome
+          uses: browser-actions/setup-chrome@latest
+        - name: Setup Gradle
+          uses: gradle/actions/setup-gradle@v4
+        - name: Build with Gradle Wrapper
+          run: .gradlew clean smoketests
+        - name: Store reports
+          if: failure ()
+          uses: actions/upload-artifact@v4
+          with:
+            name: reports
+            path:
+              **/build/reports/
+              **/build/test-results/
+
+
